@@ -1,12 +1,13 @@
 # Sandro Abashishvili — Portfolio
 
-Persönliche Portfolio-Website für Sandro Abashishvili aus Kassel.
+Persönliche Portfolio-Website von Sandro Abashishvili aus Kassel mit
+ausgewählten Software-, Daten- und Automatisierungsprojekten.
 
 ## Positionierung
 
-Die Seite präsentiert Sandro als praktisch erfahrenen technischen Builder mit
-Kompetenzen in Software, Daten, Automatisierung und IT-Systemen. Sie ist keine
-Bewerbungs- oder Förderungsseite.
+Die Website bündelt ausgewählte Projekte, technische Arbeitsbereiche und den
+Lebenslauf in einer klaren, deutschsprachigen Präsentation. Sie richtet sich an
+Arbeitgeber, Start-ups, technische Teams und passende Projektpartner.
 
 ## Lokal starten
 
