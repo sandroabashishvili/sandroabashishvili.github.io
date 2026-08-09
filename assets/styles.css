@@ -3,6 +3,7 @@
   --muted: #5b6661;
   --paper: #f3f4ef;
   --white: #ffffff;
+  --surface: #ffffff;
   --line: #d9ded9;
   --green: #174b3b;
   --dark: #0d1815;
@@ -413,7 +414,7 @@ h1 {
   padding: 26px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
 }
 
 .capabilities article > span {
@@ -451,7 +452,7 @@ h1 {
   flex-direction: column;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: 0 1px 0 rgb(16 23 20 / 2%);
 }
 
@@ -880,6 +881,70 @@ footer a {
 
   .footer-profile-links {
     justify-content: flex-start;
+  }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --ink: #edf5f1;
+    --muted: #a8b6af;
+    --paper: #0b1210;
+    --surface: #121c18;
+    --line: #2b3933;
+    --green: #61caa1;
+    --dark: #07100d;
+    --shadow: 0 18px 48px rgb(0 0 0 / 28%);
+  }
+
+  .topbar {
+    border-bottom-color: rgb(255 255 255 / 8%);
+    background: rgb(11 18 16 / 90%);
+  }
+
+  .brand span {
+    background: var(--lime);
+    color: #101714;
+  }
+
+  .nav-cv {
+    border-color: var(--mint);
+    color: var(--mint);
+  }
+
+  .nav-cv:hover {
+    background: var(--mint);
+    color: #07100d;
+  }
+
+  .eyebrow,
+  .kicker,
+  .text-link,
+  .project-actions a,
+  .project-status b {
+    color: var(--mint);
+  }
+
+  .profile-facts div {
+    background: rgb(255 255 255 / 4%);
+  }
+
+  .project-card.featured {
+    border-color: rgb(141 224 187 / 38%);
+  }
+
+  .project-image {
+    background: #16231e;
+  }
+
+  .project-list a:hover strong,
+  .footer-profile-links a:hover {
+    color: var(--mint);
+  }
+
+  .contact {
+    background: #123d31;
   }
 }
 

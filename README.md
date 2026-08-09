@@ -28,6 +28,15 @@ http://127.0.0.1:8090/
 - `assets/styles.css` — vollständiges responsives Design
 - `assets/navigation.js` — Navigation und Header-Verhalten
 - `assets/` — Design, Bilder, Navigation und Lebenslauf
+- `robots.txt` und `sitemap.xml` — Suchmaschinensteuerung und Indexierung
+
+## Qualität und Veröffentlichung
+
+- automatische helle und dunkle Darstellung über die Systemeinstellung
+- responsive Layouts für Desktop, Tablet und Smartphone
+- Canonical URL, Open Graph, Twitter Card und strukturierte Person-/Website-Daten
+- Social-Share-Bild im Format 1200 × 630 Pixel
+- GitHub Pages als Veröffentlichungsziel
 
 Die Projektdemos werden unabhängig über ihre jeweiligen GitHub-Pages-Repositories
 veröffentlicht und von der Portfolio-Seite aus verlinkt.
