@@ -80,11 +80,13 @@ footer {
   display: grid;
   min-height: 72px;
   grid-template-columns: auto 1fr auto;
+  grid-template-areas: "brand nav cv";
   align-items: center;
   gap: 32px;
 }
 
 .brand {
+  grid-area: brand;
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -109,6 +111,7 @@ footer {
 }
 
 .topbar nav {
+  grid-area: nav;
   display: flex;
   justify-content: flex-end;
   gap: clamp(16px, 2.3vw, 30px);
@@ -128,6 +131,7 @@ footer {
 }
 
 .nav-cv {
+  grid-area: cv;
   padding: 9px 14px;
   border: 1px solid var(--green);
   border-radius: 999px;
@@ -137,6 +141,43 @@ footer {
 .nav-cv:hover {
   background: var(--green);
   color: var(--white);
+}
+
+.nav-cv-short {
+  display: none;
+}
+
+.menu-toggle {
+  grid-area: menu;
+  display: none;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 .hero {
@@ -706,10 +747,35 @@ footer a {
 @media (max-width: 1080px) {
   .topbar nav {
     display: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    padding-bottom: 12px;
+  }
+
+  .topbar nav[data-open="true"] {
+    display: grid;
+  }
+
+  .topbar nav a {
+    padding: 11px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface);
+    text-align: center;
   }
 
   .nav-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "brand cv menu"
+      "nav nav nav";
+    gap: 10px;
+  }
+
+  .menu-toggle {
+    display: grid;
+    align-content: center;
+    gap: 4px;
   }
 
   .hero {
@@ -759,6 +825,14 @@ footer a {
   .nav-cv {
     padding: 8px 12px;
     font-size: 0.72rem;
+  }
+
+  .nav-cv-full {
+    display: none;
+  }
+
+  .nav-cv-short {
+    display: inline;
   }
 
   .hero {
@@ -916,6 +990,19 @@ footer a {
   .nav-cv:hover {
     background: var(--mint);
     color: #07100d;
+  }
+
+  .button.primary {
+    color: #101714;
+  }
+
+  .menu-toggle {
+    border-color: rgb(255 255 255 / 16%);
+    color: var(--mint);
+  }
+
+  .topbar nav a {
+    background: #121c18;
   }
 
   .eyebrow,
