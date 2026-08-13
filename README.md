@@ -28,7 +28,7 @@ http://127.0.0.1:8090/
 - `assets/styles.css` — vollständiges responsives Design
 - `assets/navigation.js` — Navigation und Header-Verhalten
 - `assets/` — Design, Bilder, Navigation und Lebenslauf
-- `robots.txt` und `sitemap.xml` — Suchmaschinensteuerung und Indexierung
+- `robots.txt`, `sitemap.xml` und `sitemap_index.xml` — Suchmaschinensteuerung und manuell gepflegter Index der Projekt-Sitemaps
 
 ## Qualität und Veröffentlichung
 
