@@ -459,7 +459,7 @@ h1 {
 }
 
 .capabilities article > span {
-  color: #77817c;
+  color: #59645f;
   font-size: 0.68rem;
   font-weight: 850;
 }
@@ -637,7 +637,7 @@ h1 {
 }
 
 .project-list > * > span {
-  color: #87908c;
+  color: #5f6964;
   font-size: 0.64rem;
   font-weight: 850;
 }
@@ -1023,6 +1023,11 @@ footer a {
 
   .project-image {
     background: #16231e;
+  }
+
+  .capabilities article > span,
+  .project-list > * > span {
+    color: #a8b6af;
   }
 
   .project-list a:hover strong,
