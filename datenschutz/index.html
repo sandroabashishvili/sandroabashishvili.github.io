@@ -5,15 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,follow">
   <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f3f4ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b1210" media="(prefers-color-scheme: dark)">
   <title>Datenschutz – Sandro Abashishvili</title>
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/portfolio-app-icon.png">
   <link rel="stylesheet" href="../assets/styles.css">
   <link rel="stylesheet" href="../assets/analytics-consent.css">
+  <style>
+    .legal-brand-mark {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .brand > span {
+      width: 38px;
+      height: 38px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--green) 24%, var(--line));
+      border-radius: 11px;
+      background: #0b1210;
+      box-shadow: 0 6px 18px rgb(16 23 20 / 9%);
+    }
+    @media (prefers-color-scheme: dark) {
+      .brand > span {
+        border-color: rgb(141 224 187 / 22%);
+        background: #07100d;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="topbar">
     <div class="nav-inner">
-      <a class="brand" href="../" aria-label="Zur Startseite"><span>SA</span><strong>Sandro Abashishvili</strong></a>
+      <a class="brand" href="../" aria-label="Zur Startseite">
+        <span><img class="legal-brand-mark" src="../assets/portfolio-icon.png" width="38" height="38" alt=""></span>
+        <strong>Sandro Abashishvili</strong>
+      </a>
       <a class="nav-cv" href="../">Portfolio</a>
     </div>
   </header>
@@ -36,7 +65,7 @@
   </main>
   <footer>
     <div class="footer-profile"><strong>Sandro Abashishvili</strong><span>Software · Daten · Automatisierung</span></div>
-    <nav class="footer-profile-links"><a href="../">Portfolio</a><button type="button" class="footer-link-button" data-consent-settings>Cookie-Einstellungen</button></nav>
+    <nav class="footer-profile-links" aria-label="Datenschutz und Portfolio"><a href="../">Portfolio</a><button type="button" class="footer-link-button" data-consent-settings>Cookie-Einstellungen</button></nav>
   </footer>
   <script src="../assets/analytics-consent.js" defer></script>
 </body>
