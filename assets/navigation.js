@@ -45,53 +45,8 @@ window.addEventListener("load", () => {
   });
 });
 
-/* Portfolio chrome polish: focused primary navigation, portfolio mark,
-   legal controls in the footer and compact project icons. */
+/* Portfolio UI polish: compact project icons and responsive navigation styling. */
 (function polishPortfolioChrome() {
-  const mainNav = document.querySelector("#main-navigation");
-  const footer = document.querySelector("footer");
-  const brandMark = document.querySelector(".brand > span");
-  const desktopCv = document.querySelector(".nav-cv");
-
-  if (brandMark) {
-    brandMark.textContent = "";
-    const image = document.createElement("img");
-    image.src = "assets/portfolio-icon.png";
-    image.alt = "";
-    image.width = 36;
-    image.height = 36;
-    image.decoding = "async";
-    brandMark.appendChild(image);
-  }
-
-  if (mainNav && desktopCv && !mainNav.querySelector(".mobile-nav-cv")) {
-    const mobileCv = desktopCv.cloneNode(true);
-    mobileCv.classList.add("mobile-nav-cv");
-    mobileCv.querySelector(".nav-cv-full")?.classList.remove("nav-cv-full");
-    mobileCv.querySelector(".nav-cv-short")?.remove();
-    mainNav.appendChild(mobileCv);
-  }
-
-  if (mainNav && footer) {
-    const privacyLink = Array.from(mainNav.querySelectorAll("a")).find((link) =>
-      link.getAttribute("href")?.includes("datenschutz")
-    );
-    const consentButton = mainNav.querySelector("[data-consent-settings]");
-
-    if (privacyLink || consentButton) {
-      const legalNav = document.createElement("nav");
-      legalNav.className = "footer-legal-links";
-      legalNav.setAttribute("aria-label", "Datenschutz und Einstellungen");
-
-      if (privacyLink) legalNav.appendChild(privacyLink);
-      if (consentButton) legalNav.appendChild(consentButton);
-
-      const backToTop = footer.querySelector('a[href="#start"]');
-      if (backToTop) footer.insertBefore(legalNav, backToTop);
-      else footer.appendChild(legalNav);
-    }
-  }
-
   const iconByProject = {
     "Georgien Atlas": `
       <svg viewBox="0 0 24 24" aria-hidden="true">
