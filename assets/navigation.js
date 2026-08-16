@@ -6,14 +6,15 @@ function setMenuOpen(open) {
   menuButton.setAttribute("aria-expanded", String(open));
   menuButton.setAttribute("aria-label", open ? "Navigation schließen" : "Navigation öffnen");
   mobileMenu.dataset.open = String(open);
+  document.body.classList.toggle("nav-open", open);
 }
 
 menuButton?.addEventListener("click", () => {
   setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
 });
 
-mobileMenu?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => setMenuOpen(false));
+mobileMenu?.addEventListener("click", (event) => {
+  if (event.target.closest("a, button")) setMenuOpen(false);
 });
 
 document.addEventListener("keydown", (event) => {
@@ -44,11 +45,32 @@ window.addEventListener("load", () => {
   });
 });
 
-/* Portfolio polish: keep the primary navigation focused on portfolio content,
-   move legal/privacy controls to the footer and replace project numbers with icons. */
+/* Portfolio chrome polish: focused primary navigation, portfolio mark,
+   legal controls in the footer and compact project icons. */
 (function polishPortfolioChrome() {
   const mainNav = document.querySelector("#main-navigation");
   const footer = document.querySelector("footer");
+  const brandMark = document.querySelector(".brand > span");
+  const desktopCv = document.querySelector(".nav-cv");
+
+  if (brandMark) {
+    brandMark.textContent = "";
+    const image = document.createElement("img");
+    image.src = "assets/portfolio-icon.png";
+    image.alt = "";
+    image.width = 36;
+    image.height = 36;
+    image.decoding = "async";
+    brandMark.appendChild(image);
+  }
+
+  if (mainNav && desktopCv && !mainNav.querySelector(".mobile-nav-cv")) {
+    const mobileCv = desktopCv.cloneNode(true);
+    mobileCv.classList.add("mobile-nav-cv");
+    mobileCv.querySelector(".nav-cv-full")?.classList.remove("nav-cv-full");
+    mobileCv.querySelector(".nav-cv-short")?.remove();
+    mainNav.appendChild(mobileCv);
+  }
 
   if (mainNav && footer) {
     const privacyLink = Array.from(mainNav.querySelectorAll("a")).find((link) =>
@@ -99,7 +121,8 @@ window.addEventListener("load", () => {
   const style = document.createElement("style");
   style.dataset.portfolioPolish = "true";
   style.textContent = `
-    /* Header: clean text navigation; CV remains the only button-style CTA. */
+    .nav-inner { position: relative; }
+
     .topbar nav {
       gap: clamp(18px, 2.4vw, 32px);
     }
@@ -114,7 +137,7 @@ window.addEventListener("load", () => {
       transition: color 180ms ease;
     }
 
-    .topbar nav a::after {
+    .topbar nav a:not(.mobile-nav-cv)::after {
       position: absolute;
       right: 100%;
       bottom: 2px;
@@ -131,15 +154,21 @@ window.addEventListener("load", () => {
       right: 0;
     }
 
-    .brand span {
-      width: 36px;
-      height: 36px;
-      border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
+    .brand > span {
+      width: 38px;
+      height: 38px;
+      overflow: hidden;
+      border: 1px solid color-mix(in srgb, var(--green) 24%, var(--line));
       border-radius: 11px;
-      background: var(--lime);
-      color: #10231f;
-      box-shadow: 0 6px 18px rgb(16 23 20 / 8%);
-      letter-spacing: -0.04em;
+      background: #0b1210 !important;
+      box-shadow: 0 6px 18px rgb(16 23 20 / 9%);
+    }
+
+    .brand > span img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .brand strong {
@@ -147,7 +176,8 @@ window.addEventListener("load", () => {
       letter-spacing: -0.015em;
     }
 
-    /* Footer legal area: intentionally secondary to portfolio navigation. */
+    .mobile-nav-cv { display: none; }
+
     footer {
       grid-template-columns: minmax(0, 1fr) auto auto auto;
     }
@@ -183,13 +213,16 @@ window.addEventListener("load", () => {
       text-underline-offset: 4px;
     }
 
-    /* Small project icons replace document-style numbering. */
+    .project-list > div,
+    .project-list > a {
+      grid-template-columns: 42px minmax(0, 1fr) auto;
+    }
+
     .project-list-icon {
       display: grid !important;
       width: 38px;
       height: 38px;
       place-items: center;
-      flex: 0 0 38px;
       border: 1px solid color-mix(in srgb, var(--green) 24%, var(--line));
       border-radius: 12px;
       background: color-mix(in srgb, var(--green) 6%, var(--surface));
@@ -206,16 +239,14 @@ window.addEventListener("load", () => {
       stroke-linejoin: round;
     }
 
-    /* The design follows the browser/OS theme; no manual theme state is stored. */
     @media (prefers-color-scheme: dark) {
-      .brand span {
-        border-color: rgb(216 245 106 / 24%);
-        background: #d8f56a;
-        color: #0d1815;
+      .brand > span {
+        border-color: rgb(141 224 187 / 22%);
+        background: #07100d !important;
         box-shadow: 0 8px 22px rgb(0 0 0 / 20%);
       }
 
-      .topbar nav a::after {
+      .topbar nav a:not(.mobile-nav-cv)::after {
         background: var(--mint);
       }
 
@@ -227,13 +258,34 @@ window.addEventListener("load", () => {
     }
 
     @media (max-width: 1080px) {
-      .topbar nav a {
-        padding: 10px 0;
+      body.nav-open { overflow: hidden; }
+
+      .topbar nav[data-open="true"] {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        left: 0;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 16px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--surface) 96%, transparent);
+        box-shadow: 0 18px 46px rgb(16 23 20 / 16%);
+        backdrop-filter: blur(18px);
       }
 
-      .topbar nav a::after {
-        display: none;
+      .topbar nav a {
+        width: 100%;
+        padding: 12px 2px;
+        border-bottom: 1px solid var(--line) !important;
+        text-align: left;
       }
+
+      .topbar nav a:last-child { border-bottom: 0 !important; }
+      .topbar nav a::after { display: none; }
 
       footer {
         grid-template-columns: 1fr auto;
@@ -247,12 +299,43 @@ window.addEventListener("load", () => {
 
     @media (max-width: 720px) {
       .brand strong {
-        font-size: .82rem;
+        display: inline;
+        max-width: 150px;
+        overflow: hidden;
+        font-size: .8rem;
+        text-overflow: ellipsis;
       }
 
-      footer {
-        display: flex;
+      .nav-cv:not(.mobile-nav-cv) { display: none; }
+
+      .nav-inner {
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+          "brand menu"
+          "nav nav";
       }
+
+      .mobile-nav-cv {
+        display: inline-flex !important;
+        width: 100%;
+        justify-content: center;
+        margin-top: 8px;
+        padding: 11px 14px !important;
+        border: 1px solid var(--green) !important;
+        border-radius: 999px !important;
+        color: var(--green) !important;
+      }
+
+      .topbar nav .mobile-nav-cv { border-bottom: 1px solid var(--green) !important; }
+
+      .project-list > div,
+      .project-list > a {
+        grid-template-columns: 42px 1fr;
+      }
+
+      .project-list em { grid-column: 2; }
+
+      footer { display: flex; }
 
       .footer-legal-links {
         order: 3;
