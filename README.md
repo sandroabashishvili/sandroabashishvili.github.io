@@ -1,54 +1,39 @@
-# Sandro Abashishvili — Portfolio
+# Sandro Abashishvili – Portfolio
 
-Persönliche Portfolio-Website von Sandro Abashishvili aus Kassel mit
-ausgewählten Software-, Daten- und Automatisierungsprojekten.
+Personal portfolio website for presenting software, automation and data projects.
 
-## Positionierung
+## Live site
 
-Die Website bündelt ausgewählte Projekte, technische Arbeitsbereiche und den
-Lebenslauf in einer klaren, deutschsprachigen Präsentation. Sie richtet sich an
-Arbeitgeber, Start-ups, technische Teams und passende Projektpartner.
+`https://sandroabashishvili.github.io/`
 
-## Lokal starten
+## Focus
 
-```bash
-cd /home/sandro/portfolio_projects/sandro-portfolio
-python3 -m http.server 8090
-```
+- Web applications and websites
+- Dashboards and CRM systems
+- Python automation and APIs
+- Data-driven tools
+- Selected project demos and source repositories
 
-Danach öffnen:
+## Tech
 
-```text
-http://127.0.0.1:8090/
-```
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- GitHub Pages
 
-## Struktur
+## Structure
 
-- `index.html` — semantische Hauptseite
-- `assets/styles.css` — vollständiges responsives Design
-- `assets/navigation.js` — Navigation und Header-Verhalten
-- `assets/` — Design, Bilder, Navigation und Lebenslauf
-- `robots.txt`, `sitemap.xml` und `sitemap_index.xml` — Suchmaschinensteuerung und manuell gepflegter Index der Projekt-Sitemaps
+- `index.html` — main portfolio page
+- `datenschutz/` — privacy information
+- `assets/styles.css` — site styles
+- `assets/navigation.js` — navigation and UI polish
+- `assets/analytics-consent.js` — analytics consent logic
+- `assets/favicon.svg` — browser favicon
+- `assets/portfolio-icon.png` — optimized header brand mark
+- `assets/portfolio-app-icon.png` — app / Apple touch icon
+- `assets/portfolio-social-card.png` — social sharing image
+- `assets/projects/` — project screenshots
 
-## Qualität und Veröffentlichung
+## Theme
 
-- automatische helle und dunkle Darstellung über die Systemeinstellung
-- responsive Layouts für Desktop, Tablet und Smartphone
-- Canonical URL, Open Graph, Twitter Card und strukturierte Person-/Website-Daten
-- Social-Share-Bild im Format 1200 × 630 Pixel
-- GitHub Pages als Veröffentlichungsziel
-
-Die Projektdemos werden unabhängig über ihre jeweiligen GitHub-Pages-Repositories
-veröffentlicht und von der Portfolio-Seite aus verlinkt.
-
-## Datenschutz
-
-Öffentlich gezeigt werden nur:
-
-- Name
-- Standort Kassel
-- berufliche Kompetenzen und Projekte
-- E-Mail, GitHub und LinkedIn
-
-Private Adresse, Geburtsdatum, Familienstand und Telefonnummer sind bewusst nicht
-Teil der Landing Page.
+The site follows the visitor’s browser / operating-system preference through `prefers-color-scheme` and supports both light and dark mode automatically.
