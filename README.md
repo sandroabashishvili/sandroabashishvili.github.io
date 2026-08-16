@@ -29,8 +29,8 @@ Personal portfolio website for presenting software, automation and data projects
 - `assets/navigation.js` — navigation and UI polish
 - `assets/analytics-consent.js` — analytics consent logic
 - `assets/favicon.svg` — browser favicon
-- `assets/portfolio-icon.png` — optimized header brand mark
-- `assets/portfolio-app-icon.png` — app / Apple touch icon
+- `assets/portfolio-icon.png` — lightweight header brand mark
+- `assets/portfolio-app-icon.png` — 512×512 app / Apple touch icon
 - `assets/portfolio-social-card.png` — social sharing image
 - `assets/projects/` — project screenshots
 
