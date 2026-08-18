@@ -1,9 +1,9 @@
 (function () {
   "use strict";
 
-  const measurementId = "G-9E2HWM8G0Q";
+  const measurementId = "G-BMKYWEPNHB";
   const consentKey = "sandroPortfolioAnalyticsConsent";
-  const productionHost = "sandroabashishvili.github.io";
+  const productionHost = "sandro-abashishvili.de";
   let banner = null;
   let analyticsLoaded = false;
 
