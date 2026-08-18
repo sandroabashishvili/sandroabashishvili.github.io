@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sandroabashishvili.github.io/sitemap_index.xml
+Sitemap: https://sandro-abashishvili.de/sitemap_index.xml
