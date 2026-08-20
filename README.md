@@ -1,10 +1,16 @@
 # Sandro Abashishvili – Portfolio
 
-Personal portfolio website for presenting software, automation and data projects.
+Personal developer portfolio for presenting software, automation, data and operations-oriented projects.
 
 ## Live site
 
-`https://sandroabashishvili.github.io/`
+`https://sandro-abashishvili.de/`
+
+The custom domain is the canonical public URL. GitHub Pages is used only as the hosting layer.
+
+## Positioning
+
+Engineering → Practical Operations → Software & Automation
 
 ## Focus
 
@@ -12,7 +18,7 @@ Personal portfolio website for presenting software, automation and data projects
 - Dashboards and CRM systems
 - Python automation and APIs
 - Data-driven tools
-- Selected project demos and source repositories
+- Selected live projects and source repositories
 
 ## Tech
 
@@ -25,15 +31,23 @@ Personal portfolio website for presenting software, automation and data projects
 
 - `index.html` — main portfolio page
 - `datenschutz/` — privacy information
-- `assets/styles.css` — site styles
-- `assets/navigation.js` — navigation and UI polish
-- `assets/analytics-consent.js` — analytics consent logic
+- `assets/styles.css` — primary visual system
+- `assets/polish.css` — responsive/readability refinements pending consolidation into the primary stylesheet
+- `assets/navigation.js` — navigation behavior and anchor scrolling
+- `assets/analytics-consent.js` — GA4 consent logic
 - `assets/favicon.svg` — browser favicon
-- `assets/portfolio-icon.png` — lightweight header brand mark
-- `assets/portfolio-app-icon.png` — 512×512 app / Apple touch icon
+- `assets/portfolio-icon.png` — header brand mark
+- `assets/portfolio-app-icon.png` — app / Apple touch icon
 - `assets/portfolio-social-card.png` — social sharing image
 - `assets/projects/` — project screenshots
 
 ## Theme
 
-The site follows the visitor’s browser / operating-system preference through `prefers-color-scheme` and supports both light and dark mode automatically.
+The site currently follows the visitor’s browser / operating-system preference through `prefers-color-scheme` and supports light and dark mode automatically.
+
+## Production rules
+
+- Keep `https://sandro-abashishvili.de/` as the canonical domain.
+- Do not reintroduce `github.io` URLs into canonical, social or structured metadata.
+- Preserve analytics consent and privacy behavior during redesigns.
+- Remove obsolete assets, duplicate logic and temporary workarounds as part of normal maintenance.
