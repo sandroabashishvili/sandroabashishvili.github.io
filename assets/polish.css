@@ -1,0 +1,162 @@
+/* Final portfolio polish layer. */
+html, body { max-width: 100%; overflow-x: clip; }
+
+p, li, span, a { overflow-wrap: normal; word-break: normal; }
+p { text-wrap: wrap; hyphens: none; }
+h1, h2, h3 { text-wrap: balance; hyphens: none; }
+
+/* Reliable portrait fallback until a new production WebP is exported. */
+.portrait-frame {
+  background-image: url("sandro-portrait.png");
+  background-position: center 26%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.portrait-frame > img[src$="sandro-portrait.webp"] { opacity: 0; }
+
+.system-status a span {
+  overflow: visible;
+  text-overflow: clip;
+  white-space: normal;
+  line-height: 1.25;
+}
+
+.featured-lead,
+.project-content > p,
+.profile-content p,
+.contact-copy > p,
+.section-heading > p,
+.journey p,
+.capabilities p {
+  max-width: 68ch;
+  line-height: 1.62;
+}
+
+@media (max-width: 1080px) {
+  body.nav-open { overflow: hidden; }
+  .topbar { isolation: isolate; }
+
+  .topbar nav[data-mobile-menu] {
+    position: fixed;
+    z-index: 90;
+    top: 72px;
+    right: 16px;
+    left: 16px;
+    display: none;
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: var(--surface);
+    box-shadow: 0 24px 70px rgb(9 17 15 / 22%);
+  }
+
+  .topbar nav[data-mobile-menu][data-open="true"] {
+    display: grid;
+    gap: 2px;
+  }
+
+  .topbar nav[data-mobile-menu] a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: .9rem;
+  }
+
+  .topbar nav[data-mobile-menu] a:hover,
+  .topbar nav[data-mobile-menu] a:focus-visible { background: var(--paper-2); }
+  .menu-toggle { position: relative; z-index: 101; }
+}
+
+@media (max-width: 760px) {
+  .nav-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "brand menu";
+    gap: 12px;
+  }
+  .nav-cv:not(.mobile-nav-cv) { display: none; }
+  .mobile-nav-cv {
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    font-weight: 850;
+  }
+  .topbar nav[data-mobile-menu] {
+    top: 64px;
+    right: 12px;
+    left: 12px;
+    max-height: calc(100dvh - 76px);
+  }
+
+  .hero { gap: 28px; padding: 26px; }
+  .hero h1 {
+    max-width: 10.5ch;
+    font-size: clamp(2.45rem, 12.2vw, 4rem);
+    line-height: .96;
+    letter-spacing: -.055em;
+  }
+  .positioning { max-width: 38rem; line-height: 1.6; }
+  .portrait-card { width: 100%; max-width: none; }
+  .portrait-frame { aspect-ratio: 4 / 3; background-position: center 22%; }
+
+  .system-status { margin-top: 10px; }
+  .system-status > * { padding: 14px 16px; }
+  .system-status a {
+    grid-template-columns: 10px minmax(0, 1fr) auto;
+    gap: 4px 9px;
+  }
+  .system-status a i { grid-row: 1; }
+  .system-status a b { grid-column: 3; grid-row: 1; align-self: center; }
+
+  .featured-project { border-radius: 20px; }
+  .featured-visual { min-height: 0; aspect-ratio: 16 / 10; }
+  .featured-visual img { object-position: top center; }
+  .featured-content { padding: 26px; }
+  .featured-content h3 { margin-top: 24px; }
+
+  .system-flow {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+  .system-flow span { display: block; padding: 8px 10px; text-align: center; }
+  .system-flow i { transform: rotate(90deg); text-align: center; }
+
+  .project-status { align-items: flex-start; flex-direction: column; gap: 5px; }
+  .project-content { padding: 22px; }
+  .contact { padding: 28px; }
+}
+
+@media (max-width: 430px) {
+  .brand strong { max-width: 175px; }
+  .hero { padding: 22px; }
+  .hero h1 { max-width: 10ch; }
+  .portrait-frame { aspect-ratio: 1 / 1; }
+  .section { padding-block: 56px; }
+  .contact { padding: 24px; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --muted: #afbbb5;
+    --surface: #101b17;
+    --surface-2: #16231e;
+    --line: #31443b;
+  }
+  .system-status,
+  .journey article,
+  .capabilities article,
+  .project-card { border-color: var(--line); }
+  .topbar nav[data-mobile-menu] {
+    background: #101a17;
+    box-shadow: 0 24px 70px rgb(0 0 0 / 42%);
+  }
+  .topbar nav[data-mobile-menu] a:hover,
+  .topbar nav[data-mobile-menu] a:focus-visible { background: #17241f; }
+}
