@@ -32,7 +32,7 @@ Engineering → Practical Operations → Software & Automation
 - `index.html` — main portfolio page
 - `datenschutz/` — privacy information
 - `assets/styles.css` — primary visual system
-- `assets/polish.css` — responsive/readability refinements pending consolidation into the primary stylesheet
+- `assets/polish.css` — responsive and readability refinements
 - `assets/navigation.js` — navigation behavior and anchor scrolling
 - `assets/analytics-consent.js` — GA4 consent logic
 - `assets/favicon.svg` — browser favicon
@@ -43,7 +43,7 @@ Engineering → Practical Operations → Software & Automation
 
 ## Theme
 
-The site currently follows the visitor’s browser / operating-system preference through `prefers-color-scheme` and supports light and dark mode automatically.
+The site follows the visitor’s browser / operating-system preference through `prefers-color-scheme` and supports light and dark mode automatically.
 
 ## Production rules
 
