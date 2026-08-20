@@ -1,48 +1,14 @@
 const menuButton = document.querySelector("[data-mobile-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
-const mobileNavCv = mobileMenu?.querySelector(".mobile-nav-cv");
-const mobileBreakpoint = window.matchMedia("(max-width: 1080px)");
-
-function normalizeMobileMenuLayout() {
-  if (!mobileMenu) return;
-
-  mobileMenu.style.gridColumn = "1 / -1";
-  mobileMenu.style.justifySelf = "stretch";
-  mobileMenu.style.width = "auto";
-  mobileMenu.style.minWidth = "0";
-  mobileMenu.style.maxWidth = "none";
-  mobileMenu.style.marginLeft = "0";
-  mobileMenu.style.marginRight = "0";
-  mobileMenu.style.boxSizing = "border-box";
-
-  if (mobileNavCv) {
-    mobileNavCv.style.gridArea = "auto";
-    mobileNavCv.style.gridColumn = "1 / -1";
-    mobileNavCv.style.order = "2";
-    mobileNavCv.style.width = "100%";
-    mobileNavCv.style.maxWidth = "100%";
-    mobileNavCv.style.boxSizing = "border-box";
-  }
-
-  mobileMenu.querySelectorAll("a:not(.mobile-nav-cv)").forEach((link) => {
-    link.style.gridArea = "auto";
-    link.style.order = "1";
-    link.style.width = "100%";
-    link.style.minWidth = "0";
-    link.style.maxWidth = "100%";
-    link.style.boxSizing = "border-box";
-  });
-}
+const mobileBreakpoint = window.matchMedia("(max-width: 760px)");
 
 function setMenuOpen(open) {
   if (!menuButton || !mobileMenu) return;
-  if (open && mobileBreakpoint.matches) normalizeMobileMenuLayout();
-  menuButton.setAttribute("aria-expanded", String(open));
-  menuButton.setAttribute("aria-label", open ? "Navigation schließen" : "Navigation öffnen");
-  mobileMenu.dataset.open = String(open);
+  const shouldOpen = mobileBreakpoint.matches && open;
+  menuButton.setAttribute("aria-expanded", String(shouldOpen));
+  menuButton.setAttribute("aria-label", shouldOpen ? "Navigation schließen" : "Navigation öffnen");
+  mobileMenu.dataset.open = String(shouldOpen);
 }
-
-normalizeMobileMenuLayout();
 
 menuButton?.addEventListener("click", () => {
   setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
@@ -64,7 +30,6 @@ document.addEventListener("click", (event) => {
 });
 
 mobileBreakpoint.addEventListener("change", (event) => {
-  normalizeMobileMenuLayout();
   if (!event.matches) setMenuOpen(false);
 });
 
