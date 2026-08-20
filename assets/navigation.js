@@ -1,16 +1,6 @@
 const menuButton = document.querySelector("[data-mobile-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
 
-function ensurePolishStyles() {
-  if (document.querySelector('link[href="assets/polish.css"]')) return;
-  const link = document.createElement("link");
-  link.rel = "stylesheet";
-  link.href = "assets/polish.css";
-  document.head.appendChild(link);
-}
-
-ensurePolishStyles();
-
 function setMenuOpen(open) {
   if (!menuButton || !mobileMenu) return;
   menuButton.setAttribute("aria-expanded", String(open));
