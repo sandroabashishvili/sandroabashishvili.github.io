@@ -5,15 +5,6 @@ p, li, span, a { overflow-wrap: normal; word-break: normal; }
 p { text-wrap: wrap; hyphens: none; }
 h1, h2, h3 { text-wrap: balance; hyphens: none; }
 
-/* Reliable portrait fallback until a new production WebP is exported. */
-.portrait-frame {
-  background-image: url("sandro-portrait.png");
-  background-position: center 26%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.portrait-frame > img[src$="sandro-portrait.webp"] { opacity: 0; }
-
 .system-status a span {
   overflow: visible;
   text-overflow: clip;
@@ -103,7 +94,8 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   }
   .positioning { max-width: 38rem; line-height: 1.6; }
   .portrait-card { width: 100%; max-width: none; }
-  .portrait-frame { aspect-ratio: 4 / 3; background-position: center 22%; }
+  .portrait-frame { aspect-ratio: 4 / 3; }
+  .portrait-frame img { object-position: center 22%; }
 
   .system-status { margin-top: 10px; }
   .system-status > * { padding: 14px 16px; }
