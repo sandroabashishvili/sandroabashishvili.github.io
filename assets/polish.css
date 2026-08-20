@@ -414,11 +414,12 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   .project-list em { grid-column: auto; }
 
   .contact h2 {
-    max-width: 12ch;
-    font-size: clamp(1.85rem, 7.7vw, 2.18rem);
-    line-height: 1.03;
+    max-width: none;
+    font-size: clamp(1.55rem, 6.6vw, 1.82rem);
+    line-height: 1.05;
+    letter-spacing: -.035em;
     white-space: normal;
-    text-wrap: balance;
+    text-wrap: pretty;
   }
   .contact-copy { width: 100%; min-width: 0; }
   .contact-copy > p { font-size: .96rem; line-height: 1.46; }
@@ -470,7 +471,7 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   .capabilities-section .section-heading h2 { font-size: clamp(1.95rem, 8.3vw, 2.3rem); }
   .other-projects .section-heading h2 { max-width: 15ch; }
   .contact { padding: 18px; }
-  .contact h2 { font-size: clamp(1.78rem, 7.4vw, 2rem); }
+  .contact h2 { font-size: clamp(1.48rem, 6.35vw, 1.68rem); }
   .footer-profile { gap: 4px 7px; font-size: .68rem; }
 }
 
