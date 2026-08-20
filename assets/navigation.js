@@ -2,14 +2,28 @@ const menuButton = document.querySelector("[data-mobile-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
 const menuHome = mobileMenu?.parentElement || null;
 const menuNextSibling = mobileMenu?.nextSibling || null;
+const buttonHome = menuButton?.parentElement || null;
+const buttonNextSibling = menuButton?.nextSibling || null;
 const mobileBreakpoint = window.matchMedia("(max-width: 1080px)");
 
-function restoreMenuHome() {
-  if (!mobileMenu || !menuHome || mobileMenu.parentElement === menuHome) return;
-  if (menuNextSibling && menuNextSibling.parentNode === menuHome) {
-    menuHome.insertBefore(mobileMenu, menuNextSibling);
+function restoreButtonHome() {
+  if (!menuButton || !buttonHome || menuButton.parentElement === buttonHome) return;
+  if (buttonNextSibling && buttonNextSibling.parentNode === buttonHome) {
+    buttonHome.insertBefore(menuButton, buttonNextSibling);
   } else {
-    menuHome.appendChild(mobileMenu);
+    buttonHome.appendChild(menuButton);
+  }
+}
+
+function restoreMenuHome() {
+  if (!mobileMenu || !menuHome) return;
+  restoreButtonHome();
+  if (mobileMenu.parentElement !== menuHome) {
+    if (menuNextSibling && menuNextSibling.parentNode === menuHome) {
+      menuHome.insertBefore(mobileMenu, menuNextSibling);
+    } else {
+      menuHome.appendChild(mobileMenu);
+    }
   }
   mobileMenu.classList.remove("menu-portal");
   mobileMenu.style.removeProperty("top");
@@ -19,7 +33,7 @@ function restoreMenuHome() {
 
 function positionPortalMenu() {
   if (!menuButton || !mobileMenu || !mobileBreakpoint.matches) return;
-  const header = menuButton.closest(".topbar");
+  const header = document.querySelector(".topbar");
   const rect = header?.getBoundingClientRect();
   const gutter = window.innerWidth <= 760 ? 12 : 16;
   mobileMenu.style.top = `${Math.max(0, rect?.bottom ?? 64) + 1}px`;
@@ -28,9 +42,10 @@ function positionPortalMenu() {
 }
 
 function moveMenuToViewport() {
-  if (!mobileMenu || !mobileBreakpoint.matches) return;
+  if (!mobileMenu || !menuButton || !mobileBreakpoint.matches) return;
   if (mobileMenu.parentElement !== document.body) document.body.appendChild(mobileMenu);
   mobileMenu.classList.add("menu-portal");
+  mobileMenu.prepend(menuButton);
   positionPortalMenu();
 }
 
@@ -52,7 +67,7 @@ menuButton?.addEventListener("click", () => {
 });
 
 mobileMenu?.addEventListener("click", (event) => {
-  if (event.target.closest("a, button")) setMenuOpen(false);
+  if (event.target.closest("a")) setMenuOpen(false);
 });
 
 document.addEventListener("keydown", (event) => {
