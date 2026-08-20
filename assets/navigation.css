@@ -1,0 +1,77 @@
+/* Navigation layout overrides. Loaded by navigation.js so it wins over legacy polish rules. */
+@media (min-width: 761px) {
+  .nav-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas: "brand nav cv";
+    align-items: center;
+    gap: 24px;
+  }
+  .brand { grid-area: brand; }
+  .topbar nav[data-mobile-menu] {
+    grid-area: nav;
+    display: flex !important;
+    width: auto !important;
+    min-width: 0;
+    justify-content: center;
+    gap: clamp(18px, 2.2vw, 34px);
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: 0;
+  }
+  .topbar nav[data-mobile-menu] .mobile-nav-cv { display: none !important; }
+  .nav-cv:not(.mobile-nav-cv) { grid-area: cv; display: inline-flex; }
+  .menu-toggle { display: none !important; }
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    background: #09110f;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: "brand menu" "nav nav";
+    width: min(var(--content), calc(100% - 24px));
+    gap: 0 12px;
+    padding-block: 8px;
+  }
+  .brand { grid-area: brand; }
+  .menu-toggle { grid-area: menu; display: block !important; }
+  .nav-cv:not(.mobile-nav-cv) { display: none !important; }
+
+  .topbar nav[data-mobile-menu] {
+    grid-area: nav;
+    display: none !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    width: 100% !important;
+    min-width: 0;
+    margin: 0;
+    padding: 8px 0 5px;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #09110f !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+  }
+  .topbar nav[data-mobile-menu][data-open="true"] { display: grid !important; }
+  .topbar nav[data-mobile-menu] > a:not(.mobile-nav-cv) {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .topbar nav[data-mobile-menu] .mobile-nav-cv {
+    display: flex !important;
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(72%, 240px) !important;
+    min-width: 170px;
+    max-width: 240px !important;
+    min-height: 42px;
+    margin: 2px auto 0;
+    box-sizing: border-box;
+  }
+}
