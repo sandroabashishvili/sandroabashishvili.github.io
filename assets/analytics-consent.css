@@ -1,12 +1,3 @@
-.footer-link-button {
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  cursor: pointer;
-}
-
 .footer-link-button:hover,
 .footer-link-button:focus-visible { color: var(--green); }
 
