@@ -1,13 +1,35 @@
 const menuButton = document.querySelector("[data-mobile-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
+const mobileNavCv = mobileMenu?.querySelector(".mobile-nav-cv");
 const mobileBreakpoint = window.matchMedia("(max-width: 1080px)");
+
+function normalizeMobileMenuLayout() {
+  if (!mobileMenu) return;
+  mobileMenu.style.minWidth = "0";
+  mobileMenu.style.maxWidth = "100%";
+  mobileMenu.style.boxSizing = "border-box";
+
+  if (mobileNavCv) {
+    mobileNavCv.style.gridArea = "auto";
+    mobileNavCv.style.gridColumn = "1 / -1";
+    mobileNavCv.style.order = "2";
+  }
+
+  mobileMenu.querySelectorAll("a:not(.mobile-nav-cv)").forEach((link) => {
+    link.style.gridArea = "auto";
+    link.style.order = "1";
+  });
+}
 
 function setMenuOpen(open) {
   if (!menuButton || !mobileMenu) return;
+  if (open && mobileBreakpoint.matches) normalizeMobileMenuLayout();
   menuButton.setAttribute("aria-expanded", String(open));
   menuButton.setAttribute("aria-label", open ? "Navigation schließen" : "Navigation öffnen");
   mobileMenu.dataset.open = String(open);
 }
+
+normalizeMobileMenuLayout();
 
 menuButton?.addEventListener("click", () => {
   setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
@@ -29,6 +51,7 @@ document.addEventListener("click", (event) => {
 });
 
 mobileBreakpoint.addEventListener("change", (event) => {
+  normalizeMobileMenuLayout();
   if (!event.matches) setMenuOpen(false);
 });
 
