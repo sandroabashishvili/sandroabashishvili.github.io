@@ -1,65 +1,12 @@
 const menuButton = document.querySelector("[data-mobile-menu-button]");
 const mobileMenu = document.querySelector("[data-mobile-menu]");
-const menuHome = mobileMenu?.parentElement || null;
-const menuNextSibling = mobileMenu?.nextSibling || null;
-const buttonHome = menuButton?.parentElement || null;
-const buttonNextSibling = menuButton?.nextSibling || null;
 const mobileBreakpoint = window.matchMedia("(max-width: 1080px)");
-
-function restoreButtonHome() {
-  if (!menuButton || !buttonHome || menuButton.parentElement === buttonHome) return;
-  if (buttonNextSibling && buttonNextSibling.parentNode === buttonHome) {
-    buttonHome.insertBefore(menuButton, buttonNextSibling);
-  } else {
-    buttonHome.appendChild(menuButton);
-  }
-}
-
-function restoreMenuHome() {
-  if (!mobileMenu || !menuHome) return;
-  restoreButtonHome();
-  if (mobileMenu.parentElement !== menuHome) {
-    if (menuNextSibling && menuNextSibling.parentNode === menuHome) {
-      menuHome.insertBefore(mobileMenu, menuNextSibling);
-    } else {
-      menuHome.appendChild(mobileMenu);
-    }
-  }
-  mobileMenu.classList.remove("menu-portal");
-  mobileMenu.style.removeProperty("top");
-  mobileMenu.style.removeProperty("left");
-  mobileMenu.style.removeProperty("right");
-}
-
-function positionPortalMenu() {
-  if (!menuButton || !mobileMenu || !mobileBreakpoint.matches) return;
-  const header = document.querySelector(".topbar");
-  const rect = header?.getBoundingClientRect();
-  const gutter = window.innerWidth <= 760 ? 12 : 16;
-  mobileMenu.style.top = `${Math.max(0, rect?.bottom ?? 64) + 1}px`;
-  mobileMenu.style.left = `${gutter}px`;
-  mobileMenu.style.right = `${gutter}px`;
-}
-
-function moveMenuToViewport() {
-  if (!mobileMenu || !menuButton || !mobileBreakpoint.matches) return;
-  if (mobileMenu.parentElement !== document.body) document.body.appendChild(mobileMenu);
-  mobileMenu.classList.add("menu-portal");
-  mobileMenu.prepend(menuButton);
-  positionPortalMenu();
-}
 
 function setMenuOpen(open) {
   if (!menuButton || !mobileMenu) return;
-
-  if (open && mobileBreakpoint.matches) moveMenuToViewport();
-
   menuButton.setAttribute("aria-expanded", String(open));
   menuButton.setAttribute("aria-label", open ? "Navigation schließen" : "Navigation öffnen");
   mobileMenu.dataset.open = String(open);
-  document.body.classList.toggle("nav-open", open);
-
-  if (!open) restoreMenuHome();
 }
 
 menuButton?.addEventListener("click", () => {
@@ -80,14 +27,6 @@ document.addEventListener("click", (event) => {
   if (mobileMenu.contains(event.target) || menuButton.contains(event.target)) return;
   setMenuOpen(false);
 });
-
-window.addEventListener("resize", () => {
-  if (menuButton?.getAttribute("aria-expanded") === "true") positionPortalMenu();
-});
-
-window.addEventListener("scroll", () => {
-  if (menuButton?.getAttribute("aria-expanded") === "true") positionPortalMenu();
-}, { passive: true });
 
 mobileBreakpoint.addEventListener("change", (event) => {
   if (!event.matches) setMenuOpen(false);
