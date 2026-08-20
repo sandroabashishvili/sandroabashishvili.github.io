@@ -5,6 +5,15 @@ const desktopCv = document.querySelector(".nav-inner > .nav-cv:not(.mobile-nav-c
 const mobileNavCv = mobileMenu?.querySelector(".mobile-nav-cv");
 const mobileBreakpoint = window.matchMedia("(max-width: 760px)");
 
+function ensureNavigationStyles() {
+  if (document.querySelector('link[data-navigation-styles]')) return;
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = "assets/navigation.css";
+  link.dataset.navigationStyles = "true";
+  document.head.appendChild(link);
+}
+
 function applyNavigationLayout() {
   if (!mobileMenu || !navInner || !menuButton) return;
 
@@ -26,10 +35,10 @@ function applyNavigationLayout() {
     mobileMenu.style.minWidth = "0";
     mobileMenu.style.maxWidth = "100%";
     mobileMenu.style.margin = "0";
-    mobileMenu.style.padding = "8px 0 4px";
+    mobileMenu.style.padding = "8px 0 5px";
     mobileMenu.style.border = "0";
     mobileMenu.style.borderRadius = "0";
-    mobileMenu.style.background = "transparent";
+    mobileMenu.style.background = "#09110f";
     mobileMenu.style.boxShadow = "none";
     mobileMenu.style.boxSizing = "border-box";
 
@@ -46,8 +55,11 @@ function applyNavigationLayout() {
       mobileNavCv.style.gridArea = "auto";
       mobileNavCv.style.gridColumn = "1 / -1";
       mobileNavCv.style.order = "2";
-      mobileNavCv.style.width = "100%";
-      mobileNavCv.style.maxWidth = "100%";
+      mobileNavCv.style.justifySelf = "center";
+      mobileNavCv.style.width = "72%";
+      mobileNavCv.style.minWidth = "170px";
+      mobileNavCv.style.maxWidth = "240px";
+      mobileNavCv.style.marginInline = "auto";
       mobileNavCv.style.boxSizing = "border-box";
     }
     return;
@@ -107,6 +119,7 @@ function setMenuOpen(open) {
   mobileMenu.dataset.open = String(shouldOpen);
 }
 
+ensureNavigationStyles();
 applyNavigationLayout();
 
 menuButton?.addEventListener("click", () => {
@@ -150,6 +163,7 @@ document.addEventListener("click", (event) => {
 });
 
 window.addEventListener("load", () => {
+  ensureNavigationStyles();
   applyNavigationLayout();
   if (!location.hash) return;
   requestAnimationFrame(() => {
