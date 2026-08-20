@@ -1,10 +1,12 @@
-/* Final responsive and proportion refinements. */
+/* Responsive typography, spacing and proportion refinements. */
 html, body { max-width: 100%; overflow-x: clip; }
 
 p, li, span, a { overflow-wrap: normal; word-break: normal; }
 p { text-wrap: wrap; hyphens: none; }
 h1, h2, h3 { text-wrap: balance; hyphens: none; }
 
+/* Readability: headings should not overpower supporting copy. */
+.section { padding-block: clamp(52px, 6vw, 78px); }
 .section-heading h2,
 .contact h2 { color: var(--ink); }
 .contact h2 { color: var(--white); }
@@ -21,112 +23,148 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   max-width: 68ch;
   line-height: 1.55;
 }
-
-/* Profile: align both columns and remove oversized internal gaps. */
-.profile { align-items: start; }
-.profile-heading h2 {
-  max-width: 9.5ch;
-  font-size: clamp(2.75rem, 4.15vw, 4.25rem);
-  line-height: .98;
+.profile-content p,
+.contact-copy > p,
+.section-heading > p:last-child:not(.kicker) {
+  font-size: clamp(.96rem, 1.05vw, 1.04rem);
 }
-.profile-content { padding-top: 2px; }
-.profile-content p { margin-bottom: 14px; }
-.profile-content .lead { margin-bottom: 18px; }
-.text-link { margin-top: 4px; }
+
+/* Profile: smaller headline, stronger copy and tighter two-column balance. */
+.profile {
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  align-items: start;
+  gap: 36px clamp(44px, 6vw, 82px);
+}
+.profile-heading h2 {
+  max-width: 11ch;
+  font-size: clamp(2.55rem, 3.35vw, 3.55rem);
+  line-height: 1.01;
+  letter-spacing: -.052em;
+}
+.profile-content { padding-top: 1px; }
+.profile-content p { margin-bottom: 12px; }
+.profile-content .lead {
+  margin-bottom: 15px;
+  font-size: clamp(1rem, 1.12vw, 1.08rem);
+  line-height: 1.48;
+}
+.text-link { margin-top: 3px; }
 
 .journey { gap: 12px; margin-top: 0; }
 .journey article {
-  min-height: 178px;
-  padding: 22px 24px;
+  min-height: 0;
+  padding: 20px 22px;
 }
-.journey h3 { margin: 18px 0 9px; }
+.journey h3 { margin: 14px 0 7px; }
+.journey p { font-size: .84rem; line-height: 1.5; }
 .journey small { display: inline-block; }
 
-/* Capabilities: one clear heading line on desktop and compact cards. */
+/* Capabilities: remove artificial card height and empty middle zones. */
 .section-heading.compact { max-width: none; }
 .capabilities-section .section-heading h2 {
   max-width: none;
   white-space: nowrap;
+  font-size: clamp(2.6rem, 3.8vw, 4rem);
+  line-height: 1;
 }
-.capabilities { margin-top: 28px; }
+.capabilities-section .section-heading > p:last-child:not(.kicker) { margin-top: 12px; }
+.capabilities { margin-top: 24px; }
 .capabilities article {
-  min-height: 238px;
-  padding: 24px 26px;
+  min-height: 0;
+  padding: 22px 24px;
 }
-.capabilities h3 { margin: 20px 0 10px; }
-.capabilities article > div { padding-top: 18px; }
+.capabilities h3 { margin: 16px 0 8px; }
+.capabilities p { font-size: .88rem; line-height: 1.48; }
+.capabilities article > div {
+  margin-top: 15px;
+  padding-top: 0;
+}
 
-/* Featured project: give the explanatory column more room. */
-.featured-project { grid-template-columns: minmax(0, 1.05fr) minmax(430px, .95fr); }
-.featured-visual { min-height: 445px; }
-.featured-content { padding: clamp(28px, 3.4vw, 42px); }
-.featured-content h3 { margin: 26px 0 12px; }
-.featured-lead { line-height: 1.52; }
+/* Featured project: compact height; flow stays on one line on desktop. */
+.featured-project { grid-template-columns: minmax(0, 1.02fr) minmax(455px, .98fr); }
+.featured-visual { min-height: 390px; }
+.featured-content { padding: clamp(26px, 3vw, 36px); }
+.featured-content h3 {
+  margin: 20px 0 10px;
+  font-size: clamp(2.5rem, 3.4vw, 3.55rem);
+}
+.featured-lead { font-size: .92rem; line-height: 1.5; }
 .system-flow {
   flex-wrap: nowrap;
   gap: 5px;
-  margin-top: 22px;
-  padding: 14px 0;
+  margin-top: 18px;
+  padding: 12px 0;
 }
 .system-flow span {
   flex: 0 0 auto;
   padding: 6px 7px;
-  font-size: .54rem;
+  font-size: .53rem;
 }
 .system-flow i { flex: 0 0 auto; }
-.featured-project .tags { margin-top: 16px; }
-.featured-project .project-actions { padding-top: 20px; }
+.featured-project .tags { margin-top: 14px; }
+.featured-project .project-actions {
+  margin-top: 17px;
+  padding-top: 0;
+}
 
-/* Secondary cards: align tag rows and actions across all cards. */
-.project-content { padding: 22px 24px; }
-.project-content h3 { margin: 17px 0 9px; }
-.project-content > p { line-height: 1.52; }
+/* Secondary cards: natural content height, aligned compact footer. */
+.project-content { padding: 20px 22px; }
+.project-content h3 { margin: 15px 0 8px; }
+.project-content > p { font-size: .84rem; line-height: 1.5; }
 .project-content > .tags {
-  margin-top: auto;
-  padding-top: 18px;
+  margin-top: 15px;
+  padding-top: 0;
 }
 .project-content .project-actions {
-  margin-top: 0;
-  padding-top: 16px;
+  margin-top: 14px;
+  padding-top: 0;
 }
 .secondary-projects .project-card:nth-child(2) .project-content h3 {
-  font-size: 1.24rem;
+  font-size: 1.2rem;
   white-space: nowrap;
   letter-spacing: -.035em;
 }
 
-/* Other work: wider heading column and no decorative numbering. */
+/* Other work: reduce headline dominance and wasted blank area. */
 .other-projects {
-  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
-  gap: clamp(46px, 6vw, 88px);
+  grid-template-columns: minmax(320px, .72fr) minmax(0, 1.28fr);
+  align-items: start;
+  gap: clamp(34px, 4.5vw, 64px);
 }
 .other-projects .section-heading h2 {
-  max-width: 9ch;
-  font-size: clamp(2.8rem, 4.5vw, 4.45rem);
+  max-width: 11ch;
+  font-size: clamp(2.65rem, 3.65vw, 3.7rem);
+  line-height: 1.02;
 }
 .project-list a {
   grid-template-columns: 1fr auto;
-  min-height: 68px;
+  min-height: 62px;
   gap: 18px;
 }
-.project-list strong { font-size: .9rem; }
+.project-list strong { font-size: .92rem; }
 
-/* Contact: balanced columns, tighter vertical rhythm and one text color. */
+/* Contact: reduce left headline and let the right column define useful density. */
 .contact {
-  grid-template-columns: minmax(0, 1.08fr) minmax(360px, .92fr);
+  grid-template-columns: minmax(0, .86fr) minmax(430px, 1.14fr);
   align-items: start;
-  gap: clamp(42px, 6vw, 82px);
-  padding: clamp(38px, 5vw, 58px);
+  gap: clamp(38px, 5vw, 70px);
+  margin-block: 18px 52px;
+  padding: clamp(34px, 4vw, 48px);
 }
 .contact h2 {
-  max-width: 10.5ch;
-  font-size: clamp(2.8rem, 4.4vw, 4.35rem);
-  line-height: .98;
+  max-width: 11ch;
+  font-size: clamp(2.55rem, 3.45vw, 3.6rem);
+  line-height: 1.02;
+  letter-spacing: -.052em;
 }
-.contact-copy > p { margin-bottom: 0; }
-.open-to { margin: 18px 0 24px; }
+.contact-copy > p {
+  margin: 0;
+  font-size: clamp(.98rem, 1.06vw, 1.05rem);
+  line-height: 1.55;
+}
+.open-to { margin: 15px 0 20px; }
 .email { margin-top: 0; }
-.contact-links { margin-top: 20px; }
+.contact-links { margin-top: 16px; }
 
 @media (max-width: 1080px) {
   body.nav-open { overflow: hidden; }
@@ -168,15 +206,16 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   .topbar nav[data-mobile-menu] a:focus-visible { background: var(--paper-2); }
   .menu-toggle { position: relative; z-index: 101; }
 
+  .profile { grid-template-columns: 1fr 1fr; }
   .featured-project { grid-template-columns: 1fr; }
-  .featured-visual { min-height: 360px; }
+  .featured-visual { min-height: 340px; }
   .system-flow { flex-wrap: wrap; }
   .secondary-projects .project-card:nth-child(2) .project-content h3 {
     white-space: normal;
     font-size: clamp(1.3rem, 2vw, 1.65rem);
   }
-  .other-projects { grid-template-columns: 1fr 1fr; }
-  .contact { grid-template-columns: 1fr 1fr; }
+  .other-projects { grid-template-columns: .8fr 1.2fr; }
+  .contact { grid-template-columns: .9fr 1.1fr; }
 }
 
 @media (max-width: 760px) {
@@ -201,96 +240,96 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
     max-height: calc(100dvh - 76px);
   }
 
-  .hero { gap: 26px; padding: 24px; }
+  .hero { gap: 24px; padding: 23px; }
   .hero h1 {
     max-width: 10.5ch;
-    font-size: clamp(2.45rem, 12vw, 3.8rem);
-    line-height: .96;
-    letter-spacing: -.055em;
+    font-size: clamp(2.35rem, 11.3vw, 3.45rem);
+    line-height: .98;
+    letter-spacing: -.052em;
   }
-  .positioning { max-width: 38rem; line-height: 1.55; }
+  .positioning { max-width: 38rem; font-size: 1rem; line-height: 1.55; }
   .portrait-card { width: 100%; max-width: none; }
   .portrait-frame { aspect-ratio: 4 / 3; }
   .portrait-frame img { object-position: center 22%; }
 
-  .section { padding-block: 54px; }
+  .section { padding-block: 46px; }
+  .profile, .other-projects, .contact { grid-template-columns: 1fr; gap: 22px; }
   .profile-heading h2,
   .other-projects .section-heading h2,
   .contact h2 {
     max-width: none;
-    font-size: clamp(2.35rem, 10.8vw, 3.35rem);
+    font-size: clamp(2.15rem, 9.7vw, 3rem);
   }
-  .profile, .other-projects, .contact { gap: 28px; }
-  .profile-content p { margin-bottom: 12px; }
+  .profile-content p { margin-bottom: 10px; }
 
-  .journey article { min-height: 0; padding: 20px; }
-  .journey h3 { margin-top: 12px; }
+  .journey article { min-height: 0; padding: 18px 20px; }
+  .journey h3 { margin-top: 10px; }
 
   .capabilities-section .section-heading h2 {
     white-space: normal;
-    max-width: 12ch;
+    max-width: 13ch;
+    font-size: clamp(2.2rem, 10vw, 3rem);
   }
-  .capabilities { margin-top: 22px; }
-  .capabilities article { min-height: 0; padding: 22px; }
-  .capabilities h3 { margin-top: 15px; }
-  .capabilities article > div { padding-top: 15px; }
+  .capabilities { margin-top: 18px; }
+  .capabilities article { min-height: 0; padding: 20px; }
+  .capabilities h3 { margin-top: 12px; }
+  .capabilities article > div { margin-top: 13px; }
 
   .featured-project { border-radius: 20px; }
   .featured-visual { min-height: 0; aspect-ratio: 16 / 9; }
   .featured-visual img { object-position: top center; }
-  .featured-content { padding: 22px; }
-  .featured-content h3 { margin-top: 18px; font-size: clamp(2rem, 10vw, 2.7rem); }
-  .featured-lead { font-size: .9rem; }
+  .featured-content { padding: 20px; }
+  .featured-content h3 { margin-top: 16px; font-size: clamp(1.9rem, 9.4vw, 2.55rem); }
+  .featured-lead { font-size: .92rem; }
   .system-flow {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 7px;
-    margin-top: 18px;
-    padding: 14px 0;
+    gap: 6px;
+    margin-top: 15px;
+    padding: 12px 0;
   }
   .system-flow span {
     display: block;
     min-width: 0;
-    padding: 8px 7px;
+    padding: 7px 6px;
     text-align: center;
   }
   .system-flow span:last-child { grid-column: 1 / -1; }
   .system-flow i { display: none; }
-  .featured-project .tags { margin-top: 14px; }
-  .featured-project .project-actions { padding-top: 16px; }
+  .featured-project .tags { margin-top: 12px; }
+  .featured-project .project-actions { margin-top: 14px; }
 
   .project-status { align-items: flex-start; flex-direction: column; gap: 4px; }
-  .project-content { padding: 20px; }
-  .project-content h3 { margin-top: 14px; }
-  .project-content > .tags { padding-top: 16px; }
-  .project-content .project-actions { padding-top: 14px; }
+  .project-content { padding: 19px; }
+  .project-content h3 { margin-top: 12px; }
+  .project-content > .tags { margin-top: 13px; }
+  .project-content .project-actions { margin-top: 12px; }
 
-  .other-projects .section-heading h2 { max-width: 10ch; }
-  .project-list a { grid-template-columns: 1fr; gap: 4px; padding: 13px 0; }
+  .other-projects .section-heading h2 { max-width: 12ch; }
+  .project-list a { grid-template-columns: 1fr; gap: 3px; padding: 11px 0; }
   .project-list em { grid-column: auto; }
 
-  .contact { padding: 24px; }
-  .contact h2 { max-width: 10.5ch; }
-  .contact-copy > p { line-height: 1.5; }
-  .open-to { gap: 7px; margin: 16px 0 20px; }
+  .contact { margin-bottom: 38px; padding: 22px; }
+  .contact h2 { max-width: 11ch; }
+  .contact-copy > p { font-size: .98rem; line-height: 1.5; }
+  .open-to { gap: 6px; margin: 14px 0 18px; }
   .open-to span { padding: 6px 9px; }
-  .email { font-size: clamp(.98rem, 5vw, 1.22rem); }
-  .contact-links { margin-top: 18px; gap: 9px 14px; }
+  .email { font-size: clamp(.98rem, 5vw, 1.2rem); }
+  .contact-links { margin-top: 16px; gap: 8px 13px; }
 }
 
 @media (max-width: 430px) {
   .brand strong { max-width: 175px; }
-  .hero { padding: 21px; }
+  .hero { padding: 20px; }
   .hero h1 { max-width: 10ch; }
   .portrait-frame { aspect-ratio: 1 / 1; }
-  .section { padding-block: 48px; }
-  .contact { padding: 22px; }
-  .contact h2 { max-width: 9.5ch; }
+  .section { padding-block: 42px; }
+  .contact { padding: 20px; }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --muted: #b8c4be;
+    --muted: #c0cbc5;
     --surface: #101b17;
     --surface-2: #16231e;
     --line: #31443b;
