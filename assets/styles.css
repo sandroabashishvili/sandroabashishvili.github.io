@@ -377,8 +377,6 @@ h1 em { color: var(--lime); font-style: normal; }
 .projects-heading {
   display: block;
   max-width: 920px;
-  padding-left: clamp(18px, 2.2vw, 28px);
-  border-left: 2px solid var(--green);
 }
 .projects-heading > .kicker { margin: 0 0 12px; color: var(--green); }
 .projects-heading h2 { max-width: 16ch; }
