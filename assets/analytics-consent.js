@@ -51,11 +51,13 @@
     if (analyticsScheduled || location.hostname !== productionHost) return;
     analyticsScheduled = true;
     const start = () => {
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
-      } else {
-        window.setTimeout(loadAnalytics, 0);
-      }
+      window.setTimeout(() => {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
+        } else {
+          loadAnalytics();
+        }
+      }, 4000);
     };
     if (document.readyState === "complete") start();
     else window.addEventListener("load", start, { once: true });
