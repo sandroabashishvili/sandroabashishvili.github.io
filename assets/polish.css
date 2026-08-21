@@ -192,16 +192,16 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
 
 /* Contact: two compact independent columns. */
 .contact {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: center;
-  gap: clamp(34px, 4vw, 56px);
+  gap: clamp(28px, 3vw, 42px);
   margin-block: 16px 38px;
   padding: clamp(26px, 3vw, 34px) clamp(30px, 3.8vw, 44px);
 }
 .contact-heading,
 .contact-copy { min-width: 0; }
 .contact h2 {
-  max-width: 13ch;
+  max-width: none;
   font-size: clamp(2.2rem, 2.6vw, 2.7rem);
   line-height: 1.02;
   letter-spacing: -.046em;
@@ -213,7 +213,7 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   align-items: flex-start;
 }
 .contact-copy > p {
-  max-width: 48ch;
+  max-width: none;
   margin: 0;
   font-size: clamp(.98rem, 1.04vw, 1.04rem);
   line-height: 1.5;
