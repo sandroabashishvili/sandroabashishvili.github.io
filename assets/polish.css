@@ -329,10 +329,6 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
     letter-spacing: -.052em;
   }
   .positioning { max-width: 38rem; font-size: 1rem; line-height: 1.55; }
-  .hero-meta {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px 14px;
-  }
   .portrait-card { width: 100%; max-width: none; }
   .portrait-frame { aspect-ratio: 4 / 3; }
   .portrait-frame img { object-position: center 22%; }
