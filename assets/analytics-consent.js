@@ -6,6 +6,11 @@
   const productionHost = "sandro-abashishvili.de";
   let banner = null;
   let analyticsLoaded = false;
+  let analyticsScheduled = false;
+
+  function readConsent() {
+    try { return localStorage.getItem(consentKey); } catch (_) { return null; }
+  }
 
   function setConsent(value) {
     if (typeof window.gtag !== "function") return;
@@ -17,9 +22,10 @@
     });
   }
 
-  function loadAnalytics(savedConsent) {
+  function loadAnalytics() {
     if (analyticsLoaded || location.hostname !== productionHost) return;
     analyticsLoaded = true;
+    const savedConsent = readConsent();
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag("consent", "default", {
@@ -39,6 +45,20 @@
     script.dataset.analyticsId = measurementId;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
     document.head.appendChild(script);
+  }
+
+  function scheduleAnalytics() {
+    if (analyticsScheduled || location.hostname !== productionHost) return;
+    analyticsScheduled = true;
+    const start = () => {
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
+      } else {
+        window.setTimeout(loadAnalytics, 0);
+      }
+    };
+    if (document.readyState === "complete") start();
+    else window.addEventListener("load", start, { once: true });
   }
 
   function removeAnalyticsCookies() {
@@ -84,9 +104,8 @@
     banner.querySelector('[data-consent="denied"]')?.focus();
   }
 
-  let consent = null;
-  try { consent = localStorage.getItem(consentKey); } catch (_) {}
-  loadAnalytics(consent);
+  const consent = readConsent();
+  scheduleAnalytics();
   if (consent !== "granted" && consent !== "denied") showBanner();
   document.addEventListener("click", (event) => {
     if (!event.target.closest("[data-consent-settings]")) return;

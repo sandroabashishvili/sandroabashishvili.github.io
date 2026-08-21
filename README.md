@@ -35,11 +35,19 @@ Engineering → Practical Operations → Software & Automation
 - `assets/polish.css` — responsive and readability refinements
 - `assets/navigation.js` — navigation behavior and anchor scrolling
 - `assets/analytics-consent.js` — GA4 consent logic
+- `assets/sandro-portrait-*.webp` — responsive portrait variants for mobile and desktop
 - `assets/favicon.svg` — browser favicon
 - `assets/portfolio-icon.png` — header brand mark
 - `assets/portfolio-app-icon.png` — app / Apple touch icon
 - `assets/portfolio-social-card.png` — social sharing image
 - `assets/projects/` — project screenshots
+
+## Performance
+
+- Critical above-the-fold styles are embedded in `index.html`; the complete stylesheets load without blocking the first render.
+- Portfolio and project images use WebP, explicit dimensions and lazy loading where appropriate.
+- Google Analytics starts after the initial page load while preserving the configured consent mode.
+- The release scan checks mobile Lighthouse performance, layout stability, accessibility and SEO.
 
 ## Theme
 
