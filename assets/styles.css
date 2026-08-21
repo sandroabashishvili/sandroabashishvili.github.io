@@ -376,11 +376,15 @@ h1 em { color: var(--lime); font-style: normal; }
 .projects { border-top: 1px solid var(--line); }
 .projects-heading {
   display: block;
-  max-width: 920px;
+  max-width: none;
 }
 .projects-heading > .kicker { margin: 0 0 12px; color: var(--green); }
-.projects-heading h2 { max-width: 16ch; }
-.projects-heading > p:last-child { max-width: 760px; margin: 15px 0 0; color: var(--muted); }
+.projects-heading h2 { max-width: none; }
+.projects-heading > p:last-child { max-width: 960px; margin: 15px 0 0; color: var(--muted); }
+
+@media (min-width: 1081px) {
+  .projects-heading h2 { white-space: nowrap; }
+}
 
 .featured-project {
   display: grid;
