@@ -329,6 +329,10 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
     letter-spacing: -.052em;
   }
   .positioning { max-width: 38rem; font-size: 1rem; line-height: 1.55; }
+  .hero-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 14px;
+  }
   .portrait-card { width: 100%; max-width: none; }
   .portrait-frame { aspect-ratio: 4 / 3; }
   .portrait-frame img { object-position: center 22%; }
@@ -388,7 +392,14 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   }
   .system-flow span:last-child { grid-column: 1 / -1; }
   .system-flow i { display: none; }
-  .featured-project .tags { margin-top: 12px; }
+  .featured-project .tags {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px 10px;
+    margin-top: 12px;
+  }
+  .featured-project .tags span { white-space: nowrap; }
+  .featured-project .tags span:nth-child(4)::before { display: none; }
   .featured-project .project-actions { margin-top: 14px; }
 
   .project-status { align-items: flex-start; flex-direction: column; gap: 4px; }

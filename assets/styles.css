@@ -385,7 +385,7 @@ h1 em { color: var(--lime); font-style: normal; }
 .capabilities article > span { color: #4d5a54; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .63rem; font-weight: 800; }
 .capabilities h3 { margin: 48px 0 12px; font-size: 1.5rem; line-height: 1.08; letter-spacing: -.04em; }
 .capabilities p { margin: 0; color: var(--muted); font-size: .86rem; }
-.capabilities article > div { min-height: 3em; margin-top: auto; padding-top: 28px; color: var(--green); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .61rem; line-height: 1.55; letter-spacing: .03em; }
+.capabilities article > div { margin-top: auto; padding-top: 28px; color: var(--green); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .61rem; line-height: 1.55; letter-spacing: .03em; white-space: nowrap; }
 
 .projects { border-top: 1px solid var(--line); }
 .projects-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(300px, .62fr); align-items: end; gap: 40px; }
