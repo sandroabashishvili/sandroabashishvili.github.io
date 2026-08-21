@@ -20,6 +20,40 @@
     background: transparent;
     border: 0;
   }
+  .brand strong {
+    font-size: .96rem;
+    transition: color 180ms ease;
+  }
+  .brand span { transition: transform 180ms ease, border-color 180ms ease; }
+  .brand:hover strong, .brand:focus-visible strong { color: var(--green); }
+  .brand:hover span, .brand:focus-visible span {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--green) 42%, transparent);
+  }
+  .topbar nav[data-mobile-menu] > a:not(.mobile-nav-cv) {
+    position: relative;
+    padding-block: 9px;
+    font-size: .84rem;
+    transition: color 180ms ease;
+  }
+  .topbar nav[data-mobile-menu] > a:not(.mobile-nav-cv)::after {
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+    left: 0;
+    height: 2px;
+    border-radius: 999px;
+    background: var(--green);
+    content: "";
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 180ms ease;
+  }
+  .topbar nav[data-mobile-menu] > a:not(.mobile-nav-cv):hover::after,
+  .topbar nav[data-mobile-menu] > a:not(.mobile-nav-cv):focus-visible::after {
+    transform: scaleX(1);
+  }
+  .nav-cv:not(.mobile-nav-cv) { font-size: .82rem; }
   .topbar nav[data-mobile-menu] .mobile-nav-cv { display: none !important; }
   .nav-cv:not(.mobile-nav-cv) { grid-area: cv; display: inline-flex; }
   .menu-toggle { display: none !important; }
@@ -35,27 +69,38 @@
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas: "brand menu" "nav nav";
     width: min(var(--content), calc(100% - 24px));
-    gap: 0 12px;
-    padding-block: 8px;
+    gap: 0 10px;
+    padding-block: 6px;
   }
   .brand { grid-area: brand; }
-  .brand strong { color: #f0f5f1; }
-  .menu-toggle { grid-area: menu; display: block !important; }
+  .brand strong { color: #f0f5f1; font-size: .88rem; }
+  .menu-toggle {
+    grid-area: menu;
+    display: block !important;
+    border-color: rgb(255 255 255 / 16%);
+    background: rgb(255 255 255 / 4%);
+    color: #f0f5f1;
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+  .menu-toggle:hover, .menu-toggle:focus-visible {
+    border-color: rgb(142 228 189 / 48%);
+    background: rgb(142 228 189 / 9%);
+  }
   .nav-cv:not(.mobile-nav-cv) { display: none !important; }
 
   .topbar nav[data-mobile-menu] {
     grid-area: nav;
     display: none !important;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 3px;
+    gap: 6px;
     width: 100% !important;
     min-width: 0;
-    margin: 0;
-    padding: 4px 0 3px;
-    border: 0 !important;
-    border-radius: 0 !important;
-    background: #09110f !important;
-    box-shadow: none !important;
+    margin: 6px 0 2px !important;
+    padding: 8px !important;
+    border: 1px solid rgb(255 255 255 / 10%) !important;
+    border-radius: 14px !important;
+    background: #0d1814 !important;
+    box-shadow: 0 16px 34px rgb(0 0 0 / 24%) !important;
     box-sizing: border-box;
   }
   .topbar nav[data-mobile-menu][data-open="true"] { display: grid !important; }
@@ -64,22 +109,23 @@
     display: flex !important;
     width: 100% !important;
     min-width: 0;
-    min-height: 40px;
+    min-height: 36px;
     align-items: center;
     justify-content: center;
-    padding: 8px 10px !important;
-    border: 1px solid var(--line) !important;
+    padding: 6px 9px !important;
+    border: 1px solid rgb(255 255 255 / 8%) !important;
     border-radius: 9px !important;
-    background: var(--surface) !important;
-    color: var(--muted) !important;
+    background: rgb(255 255 255 / 4%) !important;
+    color: #d8e2dc !important;
+    font-size: .79rem !important;
     box-sizing: border-box;
   }
 
   .topbar nav[data-mobile-menu] > a:not(.mobile-nav-cv):hover,
   .topbar nav[data-mobile-menu] > a:not(.mobile-nav-cv):focus-visible {
-    border-color: color-mix(in srgb, var(--mint) 48%, var(--line)) !important;
-    background: var(--surface-2) !important;
-    color: var(--ink) !important;
+    border-color: rgb(142 228 189 / 42%) !important;
+    background: rgb(142 228 189 / 10%) !important;
+    color: #ffffff !important;
   }
 
   .topbar nav[data-mobile-menu] .mobile-nav-cv {
@@ -89,13 +135,15 @@
     width: 100% !important;
     min-width: 0 !important;
     max-width: none !important;
-    min-height: 40px;
+    min-height: 38px;
     margin: 0;
     padding: 8px 14px !important;
-    border: 1px solid var(--green) !important;
+    border: 1px solid var(--lime) !important;
     border-radius: 9px !important;
-    background: var(--surface) !important;
-    color: var(--green) !important;
+    background: var(--lime) !important;
+    color: #09110f !important;
+    font-size: .8rem !important;
+    font-weight: 850 !important;
     box-sizing: border-box;
   }
 }
