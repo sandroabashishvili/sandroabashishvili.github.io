@@ -39,6 +39,7 @@
     padding-block: 8px;
   }
   .brand { grid-area: brand; }
+  .brand strong { color: #f0f5f1; }
   .menu-toggle { grid-area: menu; display: block !important; }
   .nav-cv:not(.mobile-nav-cv) { display: none !important; }
 

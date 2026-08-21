@@ -117,13 +117,15 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
 
 .featured-project .project-actions a,
 .project-card .project-actions a {
-  color: var(--lime);
   font-weight: 850;
   text-decoration-thickness: 1px;
   text-underline-offset: 4px;
 }
+.featured-project .project-actions a { color: var(--lime); }
+.project-card .project-actions a { color: var(--green); }
 .featured-project .project-actions a:hover,
-.project-card .project-actions a:hover { color: var(--mint); }
+.project-card .project-actions a:hover { color: var(--green-2); }
+.featured-project .project-actions a:hover { color: var(--mint); }
 
 /* Secondary project cards */
 .secondary-projects .project-image {
@@ -485,6 +487,9 @@ h1, h2, h3 { text-wrap: balance; hyphens: none; }
   .journey article,
   .capabilities article,
   .project-card { border-color: var(--line); }
+  .capabilities article > span { color: #b8c5bf; }
+  .project-card .project-actions a { color: var(--green); }
+  .project-card .project-actions a:hover { color: var(--mint); }
   .project-list { box-shadow: 0 14px 38px rgb(0 0 0 / 16%); }
   .topbar nav[data-mobile-menu] a {
     border-color: rgb(255 255 255 / 7%);
