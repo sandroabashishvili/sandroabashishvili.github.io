@@ -1,61 +1,138 @@
-# Sandro Abashishvili – Portfolio
+# Sandro Abashishvili – Developer Portfolio
 
-Personal developer portfolio for presenting software, automation, data and operations-oriented projects.
+Persönliches Entwicklerportfolio mit ausgewählten Projekten aus Softwareentwicklung, Automatisierung, Datenverarbeitung und operativen Anwendungen.
 
-## Live site
+**Live:** [sandro-abashishvili.de](https://sandro-abashishvili.de/)
 
-`https://sandro-abashishvili.de/`
+Die eigene Domain ist die kanonische öffentliche Adresse. GitHub Pages dient ausschließlich als Hosting-Layer.
 
-The custom domain is the canonical public URL. GitHub Pages is used only as the hosting layer.
+## Positionierung
 
-## Positioning
+**Engineering → Practical Operations → Software & Automation**
 
-Engineering → Practical Operations → Software & Automation
+Das Portfolio zeigt praxisorientierte Softwareprojekte, die konkrete Abläufe, Daten und Entscheidungen verständlicher oder effizienter machen – von Webanwendungen und Dashboards bis zu Automatisierung, Datenpipelines und internen Werkzeugen.
 
-## Focus
+## Ausgewählte Projekte
 
-- Web applications and websites
-- Dashboards and CRM systems
-- Python automation and APIs
-- Data-driven tools
-- Selected live projects and source repositories
+### SmartSignalHub – Bitcoin Live Signals
 
-## Tech
+Daten- und Softwareprojekt zur transparenten Beobachtung regelbasierter Bitcoin-Strategien. Die Plattform zeigt Signale, Entry-/TP-/SL-Pläne, simulierte Positionen und die Logik hinter sichtbaren Entscheidungen.
 
-- HTML5
-- CSS3
+[Live](https://sandro-abashishvili.de/Bitcoin-Live-Signals/) · [Repository](https://github.com/sandroabashishvili/Bitcoin-Live-Signals)
+
+### Hessen Aktuell
+
+Automatisiertes regionales Informationsportal für Hessen. Python-Pipelines erfassen freigegebene Nachrichten- und Jobquellen, strukturieren die Daten und erzeugen daraus statische Stadt-, Themen-, Archiv- und Stellenangebotsseiten.
+
+[Live](https://sandro-abashishvili.de/hessen-aktuell/) · [Repository](https://github.com/sandroabashishvili/hessen-aktuell)
+
+### Logistics Operations Dashboard
+
+Interaktiver Operations- und BI-Prototyp für Transport-, Touren-, Kraftstoff-, Fahrzeug- und Kostendaten. Das Dashboard berechnet Kennzahlen, markiert Risiken und unterstützt operative Entscheidungen über eine gefilterte Analyseansicht.
+
+[Live](https://sandro-abashishvili.de/logistics-operations-dashboard/) · [Repository](https://github.com/sandroabashishvili/logistics-operations-dashboard)
+
+### Education Center CRM
+
+Flask-/SQLite-Anwendung für Schüler, Kurse, Gruppen, Unterricht, Anwesenheit und Zahlungen. Die lokale Vollversion enthält Anmeldung, Rollen, Formulare, Geschäftslogik, Exporte, Backups und Regressionstests; öffentlich steht eine schreibgeschützte Portfolio-Demo bereit.
+
+[Demo](https://sandro-abashishvili.de/education-center-crm/) · [Repository](https://github.com/sandroabashishvili/education-center-crm)
+
+### Project Quality & Release Inspector
+
+Konfigurationsgesteuerte QA-Plattform für mehrere Websites und Python-Anwendungen. Sie kombiniert Code-, Browser-, SEO-, Accessibility- und Security-Prüfungen, vergleicht Scans und erstellt nachvollziehbare Release-Entscheidungen.
+
+[Repository](https://github.com/sandroabashishvili/project-quality-release-inspector)
+
+### Georgien Atlas
+
+Leichtgewichtiger datenbasierter Web-Atlas mit interaktiver Karte, Regions- und Gemeindedaten sowie strukturierten Reiseinformationen. Das Projekt verbindet Datenvisualisierung, redaktionelle Inhalte und responsive Frontend-Entwicklung ohne schweres Framework.
+
+[Live](https://sandro-abashishvili.de/georgien-atlas/) · [Repository](https://github.com/sandroabashishvili/georgien-atlas)
+
+## Technischer Fokus
+
+Die Projekte im Portfolio decken unter anderem folgende Bereiche ab:
+
+- Python, Flask und SQLite
+- HTML5, CSS3 und Vanilla JavaScript
+- REST-/Daten-APIs und externe Datenquellen
+- Automatisierung und Datenpipelines
+- Dashboards, CRM- und interne Werkzeuge
+- JSON- und CSV-Verarbeitung
+- Tests, Debugging und Release-Prüfung
+- Git, GitHub, Linux/WSL und GitHub Pages
+
+### Dieses Portfolio selbst
+
+Die Portfolio-Seite ist bewusst leichtgewichtig aufgebaut:
+
+- semantisches HTML5
+- modulares CSS
 - Vanilla JavaScript
 - GitHub Pages
+- responsive Bildvarianten und WebP-Assets
+- automatische Hell-/Dunkeldarstellung über `prefers-color-scheme`
+- Google Analytics mit Consent-Logik
 
-## Structure
+## Repository-Struktur
 
-- `index.html` — main portfolio page
-- `datenschutz/` — privacy information
-- `assets/styles.css` — primary visual system
-- `assets/polish.css` — responsive and readability refinements
-- `assets/navigation.js` — navigation behavior and anchor scrolling
-- `assets/analytics-consent.js` — GA4 consent logic
-- `assets/sandro-portrait-*.webp` — responsive portrait variants for mobile and desktop
-- `assets/favicon.svg` — browser favicon
-- `assets/portfolio-icon.png` — header brand mark
-- `assets/portfolio-app-icon.png` — app / Apple touch icon
-- `assets/portfolio-social-card.png` — social sharing image
-- `assets/projects/` — project screenshots
+```text
+.
+├── index.html                       # Hauptseite des Portfolios
+├── datenschutz/                     # Datenschutzhinweise
+└── assets/
+    ├── styles.css                   # primäres visuelles System
+    ├── polish.css                   # responsive/readability refinements
+    ├── navigation.js                # Navigation und Anchor-Scrolling
+    ├── analytics-consent.js         # GA4-Consent-Logik
+    ├── sandro-portrait-*.webp       # responsive Portraitvarianten
+    ├── favicon.svg                  # Browser-Favicon
+    ├── portfolio-icon.png           # Brand-Icon
+    ├── portfolio-app-icon.png       # App-/Apple-Touch-Icon
+    ├── portfolio-social-card.png    # Social-Sharing-Bild
+    └── projects/                    # Projekt-Screenshots
+```
 
-## Performance
+## Lokal starten
 
-- Critical above-the-fold styles are embedded in `index.html`; the complete stylesheets load without blocking the first render.
-- Portfolio and project images use WebP, explicit dimensions and lazy loading where appropriate.
-- Google Analytics starts after the initial page load while preserving the configured consent mode.
-- The release scan checks mobile Lighthouse performance, layout stability, accessibility and SEO.
+Es gibt keinen Build-Schritt und keine Paketabhängigkeiten.
 
-## Theme
+```bash
+git clone https://github.com/sandroabashishvili/sandroabashishvili.github.io.git
+cd sandroabashishvili.github.io
+python3 -m http.server 8000
+```
 
-The site follows the visitor’s browser / operating-system preference through `prefers-color-scheme` and supports light and dark mode automatically.
+Danach im Browser öffnen:
 
-## Production rules
+```text
+http://127.0.0.1:8000/
+```
 
-- Keep `https://sandro-abashishvili.de/` as the canonical domain.
-- Do not reintroduce `github.io` URLs into canonical, social or structured metadata.
-- Preserve analytics consent and privacy behavior during redesigns.
-- Remove obsolete assets, duplicate logic and temporary workarounds as part of normal maintenance.
+## Performance und Qualität
+
+- Kritische Above-the-fold-Styles sind direkt in `index.html` eingebettet.
+- Vollständige Stylesheets laden ohne Blockierung des ersten Renderings.
+- Portfolio- und Projektbilder verwenden WebP, feste Dimensionen und Lazy Loading, wo es sinnvoll ist.
+- Google Analytics startet nach dem initialen Seitenaufbau unter Beibehaltung der Consent-Konfiguration.
+- Release-Prüfungen kontrollieren unter anderem Mobile Performance, Layout-Stabilität, Accessibility und SEO.
+
+## Production-Regeln
+
+- `https://sandro-abashishvili.de/` bleibt die einzige kanonische öffentliche Domain.
+- `github.io`-Adressen werden nicht in Canonical-, Social- oder Structured-Data-Metadaten zurückgeführt.
+- Analytics-Consent und Datenschutzverhalten bleiben bei Änderungen erhalten.
+- Nach größeren Änderungen werden veraltete Assets, doppelter Code, tote Logik und temporäre Workarounds geprüft und nur nach Verifikation entfernt.
+
+## Status
+
+**Aktives Production-Portfolio.**
+
+Die Seite wird als zentrale technische Präsentation gepflegt. Einzelne Projekte können unabhängig davon abgeschlossen, erweitert oder weiterentwickelt werden.
+
+## Autor
+
+Sandro Abashishvili
+
+[Portfolio](https://sandro-abashishvili.de/) · [GitHub](https://github.com/sandroabashishvili) · [LinkedIn](https://www.linkedin.com/in/aleksandre-abashishvili-03417617a/)
