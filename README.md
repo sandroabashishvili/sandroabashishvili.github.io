@@ -61,11 +61,7 @@ Datenbasierter Web-Atlas mit interaktiver Karte, Regions- und Gemeindedaten sowi
 
 ## Portfolio-Technik
 
-Die Portfolio-Seite selbst ist als leichtgewichtige statische Website mit HTML, CSS und Vanilla JavaScript umgesetzt und wird über GitHub Pages veröffentlicht. Responsive Darstellung, Hell-/Dunkelmodus, Datenschutz und Performance werden bei Änderungen berücksichtigt.
-
-## Status
-
-Aktives Portfolio mit veröffentlichten, abgeschlossenen und weiterentwickelten Projekten.
+Die Portfolio-Seite selbst ist als leichtgewichtige statische Website mit HTML, CSS und Vanilla JavaScript umgesetzt und wird über GitHub Pages veröffentlicht.
 
 ## Kontakt
 
