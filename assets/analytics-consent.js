@@ -2,11 +2,11 @@
   "use strict";
 
   const measurementId = "G-BMKYWEPNHB";
-  const consentKey = "sandroPortfolioAnalyticsConsent";
+  const consentKey = "sandroAnalyticsConsentV1";
   const productionHost = "sandro-abashishvili.de";
+  document.documentElement.dataset.analyticsConsentMode = "basic";
   let banner = null;
   let analyticsLoaded = false;
-  let analyticsScheduled = false;
 
   function readConsent() {
     try { return localStorage.getItem(consentKey); } catch (_) { return null; }
@@ -25,7 +25,6 @@
   function loadAnalytics() {
     if (analyticsLoaded || location.hostname !== productionHost) return;
     analyticsLoaded = true;
-    const savedConsent = readConsent();
     window.dataLayer = window.dataLayer || [];
     window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
     window.gtag("consent", "default", {
@@ -34,7 +33,7 @@
       ad_user_data: "denied",
       ad_personalization: "denied",
     });
-    if (savedConsent === "granted") setConsent("granted");
+    setConsent("granted");
     window.gtag("js", new Date());
     window.gtag("config", measurementId, {
       allow_google_signals: false,
@@ -45,22 +44,6 @@
     script.dataset.analyticsId = measurementId;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
     document.head.appendChild(script);
-  }
-
-  function scheduleAnalytics() {
-    if (analyticsScheduled || location.hostname !== productionHost) return;
-    analyticsScheduled = true;
-    const start = () => {
-      window.setTimeout(() => {
-        if ("requestIdleCallback" in window) {
-          window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
-        } else {
-          loadAnalytics();
-        }
-      }, 4000);
-    };
-    if (document.readyState === "complete") start();
-    else window.addEventListener("load", start, { once: true });
   }
 
   function removeAnalyticsCookies() {
@@ -76,8 +59,11 @@
 
   function saveConsent(value) {
     try { localStorage.setItem(consentKey, value); } catch (_) {}
-    setConsent(value);
-    if (value === "denied") removeAnalyticsCookies();
+    if (value === "granted") loadAnalytics();
+    else {
+      setConsent("denied");
+      removeAnalyticsCookies();
+    }
     banner?.remove();
     banner = null;
   }
@@ -92,7 +78,7 @@
     banner.innerHTML = `
       <div>
         <strong id="consent-title">Optionale Statistik</strong>
-        <p>Mit Ihrer Einwilligung verwenden wir Google Analytics für die vollständige Nutzungsanalyse. Ohne Zustimmung werden keine Analytics-Cookies gesetzt; Google kann cookielose Messsignale erhalten. <a href="/datenschutz/">Mehr erfahren</a></p>
+        <p>Mit Ihrer Einwilligung verwenden wir Google Analytics für die Nutzungsanalyse. Der Google-Tag wird erst nach Ihrer Zustimmung geladen. <a href="/datenschutz/">Mehr erfahren</a></p>
       </div>
       <div class="consent-actions">
         <button type="button" class="consent-button" data-consent="denied">Ablehnen</button>
@@ -107,7 +93,7 @@
   }
 
   const consent = readConsent();
-  scheduleAnalytics();
+  if (consent === "granted") loadAnalytics();
   if (consent !== "granted" && consent !== "denied") showBanner();
   document.addEventListener("click", (event) => {
     if (!event.target.closest("[data-consent-settings]")) return;
