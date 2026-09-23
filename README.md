@@ -40,7 +40,7 @@ Flask-/SQLite-Anwendung für Schüler, Kurse, Gruppen, Unterricht, Anwesenheit u
 
 Konfigurationsgesteuerte QA-Plattform für mehrere Websites und Python-Anwendungen mit Code-, Browser-, SEO-, Accessibility- und Security-Prüfungen sowie Release-Entscheidungen.
 
-[Repository](https://github.com/sandroabashishvili/project-quality-release-inspector)
+Internes Werkzeug für die lokale Projektprüfung; derzeit kein öffentliches Repository.
 
 ### Georgien Atlas
 
